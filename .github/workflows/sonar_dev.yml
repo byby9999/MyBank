@@ -4,8 +4,8 @@ on:
     branches:
       - dev
 jobs:
-  scan:
-    name: 'SonarCloud scan'
+  sonar:
+    name: 'Sonar scan'
     runs-on: windows-latest
     steps:
       - name: Set up JDK 11
@@ -41,7 +41,7 @@ jobs:
         shell: powershell
         run: |
           dotnet restore
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"byby9999_MyBank" /o:"byby9999-1" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"byby9999_MyBank" /o:"byby9999org" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --no-restore
           dotnet test --no-build --verbosity normal
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
