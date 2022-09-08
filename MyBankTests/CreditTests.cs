@@ -66,5 +66,26 @@ namespace MyBankTests
 
             Assert.Equal(CreditStatus.ReferredToHuman, result);
         }
+
+        [Fact]
+        public void Apply_LargeJobHistory_ShouldReferToHuman()
+        {
+            var applicant = new Person
+            {
+                BirthDate = new DateTime(2000, 12, 12),
+                JobHistory = new Dictionary<string, int> 
+                { 
+                    { "CompA", 12 }, { "CompC", 122 }, { "CompE", 12 }, { "CompG", 12 }, 
+                    { "CompB", 12 }, { "CompD", 43 }, { "CompF", 11 }, { "CompI", 12 } 
+                }
+            };
+            var calculator = new Calculator();
+
+            var credit = new Credit { Amount = 50000, Applicant = applicant, Months = 20 };
+
+            var result = calculator.Apply(credit);
+
+            Assert.Equal(CreditStatus.ReferredToHuman, result);
+        }
     }
 }
