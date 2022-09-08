@@ -35,7 +35,7 @@ namespace MyBankTests
         }
 
         [Fact]
-        public void Apply_LargeAmountAndNoJobHistory_ShouldAccept()
+        public void Apply_VeryLargeAmountAndNoJobHistory_ShouldReject()
         {
             var applicant = new Person
             {
@@ -43,11 +43,11 @@ namespace MyBankTests
             };
             var calculator = new Calculator();
 
-            var credit = new Credit { Amount = 80000, Applicant = applicant, Months = 20 };
+            var credit = new Credit { Amount = 120000, Applicant = applicant, Months = 20 };
 
             var result = calculator.Apply(credit);
 
-            Assert.Equal(CreditStatus.Accepted, result);
+            Assert.Equal(CreditStatus.Rejected, result);
         }
 
         [Fact]
