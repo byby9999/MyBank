@@ -85,7 +85,7 @@ namespace MyBankTests
 
             var result = calculator.Apply(credit);
 
-            Assert.Equal(CreditStatus.ReferredToHuman, result);
+            Assert.Equal(CreditStatus.Accepted, result);
         }
     }
 }
