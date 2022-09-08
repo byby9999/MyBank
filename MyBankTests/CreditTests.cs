@@ -66,6 +66,5 @@ namespace MyBankTests
 
             Assert.Equal(CreditStatus.ReferredToHuman, result);
         }
-
     }
 }
